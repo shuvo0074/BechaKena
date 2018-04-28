@@ -4,7 +4,6 @@ import { StyleSheet, Text, View, TextInput,TouchableOpacity } from 'react-native
 export default class LoginForm extends React.Component {
   render() {
     return (
-      <View>
       <View style={styles.container}>
         <Text style={styles.fonts}> Login here</Text>
         <TextInput
@@ -16,14 +15,13 @@ export default class LoginForm extends React.Component {
         style= {styles.input}
         placeholder='   password'
         placeholderTextColor='#27ae60'
+        secureTextEntry
         />
         <TouchableOpacity style={styles.buttonStyle}>
         <Text style={styles.buttonFonts}>
           Login
         </Text>
         </TouchableOpacity>
-      </View>
-      
       </View>
     );
   }

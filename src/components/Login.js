@@ -1,11 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image,ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Image,ScrollView,KeyboardAvoidingView } from 'react-native';
 import LogForm from './LoginForm'
 
 export default class Login extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView behavior='padding' style={styles.container}>
         <Text style= {{flex: 5,margin: 50,fontSize: 20, padding:10, }}>
         Login here
         </Text>
@@ -15,11 +15,9 @@ export default class Login extends React.Component {
         />
         </View>
         <View style={styles.formContainer}>
-        <LogForm
-        
-        />
+        <LogForm/>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
