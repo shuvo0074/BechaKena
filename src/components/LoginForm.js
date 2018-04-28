@@ -10,12 +10,16 @@ export default class LoginForm extends React.Component {
         placeholder="   User name"
         placeholderTextColor="#27ae60"
         style= {styles.input}
+        returnKeyType='next'
+        onSubmitEditing={()=> this.passwordInput.focus()}
         />
         <TextInput
         style= {styles.input}
         placeholder='   password'
         placeholderTextColor='#27ae60'
         secureTextEntry
+        returnKeyType='go'
+        ref= {(input)=> this.passwordInput=input }
         />
         <TouchableOpacity style={styles.buttonStyle}>
         <Text style={styles.buttonFonts}>
