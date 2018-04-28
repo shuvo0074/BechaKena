@@ -1,13 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Hello from './src/Hello'
-import Login from './src/components/Login'
 
-export default class App extends React.Component {
+export default class Hello extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Login/>
+        <Text>Hello from Hello.js</Text>
+        
       </View>
     );
   }
@@ -17,5 +16,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    },
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
