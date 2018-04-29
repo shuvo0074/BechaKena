@@ -21,6 +21,7 @@ export default class Login extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex:1,
     backgroundColor: '#0984e3',
     alignItems: 'center',
     
@@ -30,6 +31,7 @@ const styles = StyleSheet.create({
     padding: 60
   },
   formContainer:{
+    flex:1,
   },
 
 });
