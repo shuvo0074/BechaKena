@@ -1,0 +1,19 @@
+<TouchableOpacity style={styles.buttonStyle}>
+        <Text style={styles.buttonFonts}>
+          SIgn up
+        </Text>
+        </TouchableOpacity>
+        
+        <TouchableOpacity style={styles.buttonStyle}>
+        <Text style={styles.buttonFonts}>
+          Login
+        </Text>
+        </TouchableOpacity>
+
+
+        <Stack key="root" hideNavBar={true} >
+          <Scene key="signup" component={SignUp} title="signup"/>
+          <Scene key="loggedin" component={Accepted} title="loggedin"/>
+          <Scene key="failed" component={Failed} title='failed' />
+          <Scene key="login" component={Login} title='login' />
+        </Stack>

@@ -1,11 +1,23 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput,TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput,TouchableOpacity,Alert } from 'react-native';
+import Nav from '../Nav'
+import { Router,Stack,Scene,Actions} from 'react-native-router-flux'
+import SignUp from './SignUp'
+import Accepted from './Accepted'
+import Failed from './Failed'
 
 export default class LoginForm extends React.Component {
   state = {
     name: ['as',],
     pw: ['qw',]
   }
+  onPressSignUpButton(){
+     <SignUp/>
+  }
+  onPressLoginButton(){
+    Actions.Accepted()
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -29,15 +41,15 @@ export default class LoginForm extends React.Component {
         ref= {(input)=> this.passwordInput=input }
         />
         
-        <View style={{flexDirection: 'row'}}>
+        <View style={{flexDirection: 'row',justifyContent: 'space-evenly',}}>
         
-        <TouchableOpacity style={styles.buttonStyle}>
+        <TouchableOpacity style={styles.buttonStyle} onPress={this.onPressSignUpButton} >
         <Text style={styles.buttonFonts}>
-          SIgn up
+          Sign up
         </Text>
         </TouchableOpacity>
         
-        <TouchableOpacity style={styles.buttonStyle}>
+        <TouchableOpacity style={styles.buttonStyle} onPress={this.onPressLoginButton} >
         <Text style={styles.buttonFonts}>
           Login
         </Text>
