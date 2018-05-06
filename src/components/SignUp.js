@@ -3,7 +3,19 @@ import { StyleSheet, Text, View, TextInput,TouchableOpacity } from 'react-native
 import { Router,Stack,Scene,Actions} from 'react-native-router-flux'
 
 export default class SignUp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {txt: [],pass: []};
+  }
   onPressRegisterButton(){
+    var a=this.refs.uName.value
+    var arr = this.state.txt
+    arr.push(a)
+    this.setState({txt: arr})
+    arr = this.state.pass
+    a=this.refs.pas.value
+    arr.push(a)
+    this.setState({pass: arr})
     Actions.accepted()
   }
   render() {
@@ -16,6 +28,8 @@ export default class SignUp extends React.Component {
         placeholderTextColor="#27ae60"
         style= {styles.input}
         returnKeyType='next'
+        ref = "uName"
+        onChangeText={(text) => this.setState({text})}
         onSubmitEditing={()=> this.passwordInput.focus()}
         />
         
@@ -24,6 +38,7 @@ export default class SignUp extends React.Component {
         placeholder='   password'
         placeholderTextColor='#27ae60'
         secureTextEntry
+        ref = "pas"
         returnKeyType='go'
         ref= {(input)=> this.passwordInput=input }
         />
