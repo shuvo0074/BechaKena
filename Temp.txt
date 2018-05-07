@@ -17,3 +17,16 @@
           <Scene key="failed" component={Failed} title='failed' />
           <Scene key="login" component={Login} title='login' />
         </Stack>
+
+        7th May 2018
+
+        frtom signup
+        var a=this.refs.uName.value
+    var arr = this.state.txt
+    arr.push(a)
+    this.setState({txt: arr})
+    arr = this.state.pass
+    a=this.refs.pas.value
+    arr.push(a)
+    this.setState({pass: arr})
+    Actions.accepted()

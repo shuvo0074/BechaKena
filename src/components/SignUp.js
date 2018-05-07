@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput,TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput,TouchableOpacity,ScrollView } from 'react-native';
 import { Router,Stack,Scene,Actions} from 'react-native-router-flux'
 
 export default class SignUp extends React.Component {
@@ -8,21 +8,22 @@ export default class SignUp extends React.Component {
     this.state = {txt: [],pass: []};
   }
   onPressRegisterButton(){
-    var a=this.refs.uName.value
-    var arr = this.state.txt
-    arr.push(a)
-    this.setState({txt: arr})
-    arr = this.state.pass
-    a=this.refs.pas.value
-    arr.push(a)
-    this.setState({pass: arr})
     Actions.accepted()
   }
   render() {
     return (
-      <View style={styles.container}>        
-        <Text style={styles.fonts}> Give your Username and password here</Text>
-        
+      <ScrollView contentContainerStyle={styles.container} >        
+        <Text style={styles.fonts}> Give your informations here</Text>
+        <TextInput
+        style= {styles.input}
+        placeholder='   Full name'
+        placeholderTextColor='#27ae60'
+        secureTextEntry
+        ref = "fName"
+        returnKeyType='go'
+        ref= {(input)=> this.passwordInput=input }
+        />
+
         <TextInput
         placeholder="   User name"
         placeholderTextColor="#27ae60"
@@ -43,13 +44,42 @@ export default class SignUp extends React.Component {
         ref= {(input)=> this.passwordInput=input }
         />
 
+        <TextInput
+        style= {styles.input}
+        placeholder='   address'
+        placeholderTextColor='#27ae60'
+        secureTextEntry
+        ref = "addr"
+        returnKeyType='go'
+        ref= {(input)=> this.passwordInput=input }
+        />
+        
+        <TextInput
+        style= {styles.input}
+        placeholder='   email'
+        placeholderTextColor='#27ae60'
+        secureTextEntry
+        ref = "email"
+        returnKeyType='go'
+        ref= {(input)=> this.passwordInput=input }
+        />
+
+        <TextInput
+        style= {styles.input}
+        placeholder='   Phone'
+        placeholderTextColor='#27ae60'
+        secureTextEntry
+        ref = "phone"
+        returnKeyType='go'
+        ref= {(input)=> this.passwordInput=input }
+        />
+
         <TouchableOpacity style={styles.buttonStyle} onPress={this.onPressRegisterButton} >
         <Text style={styles.buttonFonts}>
           Register
         </Text>
         </TouchableOpacity>
-
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -57,7 +87,7 @@ export default class SignUp extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0984e3',
+    backgroundColor: '#0c2461',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -72,11 +102,13 @@ const styles = StyleSheet.create({
       margin: 10,
     },
     fonts: {
+      flex: 1,
       fontSize: 22,
       fontWeight: 'bold',
-      color: '#192a56',
+      color: '#27ae60',
       alignItems: 'center',
-      padding: 20
+      padding: 20,
+      marginTop: 100,
     },
     buttonStyle: {
       margin: 10,
@@ -89,6 +121,7 @@ const styles = StyleSheet.create({
       paddingTop: 2,
       },
     buttonFonts: {
+      flex: 1,
       fontWeight: 'bold',
       color: '#27ae60',
       fontSize: 15,

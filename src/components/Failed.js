@@ -39,14 +39,14 @@ export default class Failed extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0984e3',
+    backgroundColor: '#0c2461',
     alignItems: 'center',
     justifyContent: 'center',
   },
     fonts: {
       fontSize: 22,
       fontWeight: 'bold',
-      color: '#192a56',
+      color: '#27ae60',
       marginRight: 150
     },
     buttonStyle: {

@@ -11,6 +11,7 @@ export default class Login extends React.Component {
  }
   render() {
     return (
+      <ScrollView contentContainerStyle={styles.sView}>
       <KeyboardAvoidingView behavior='padding' style={styles.container}>
         <View style={styles.logoContainer}>
         <Image 
@@ -58,6 +59,7 @@ export default class Login extends React.Component {
       </View>
         </View>
       </KeyboardAvoidingView>
+      </ScrollView>
     );
   }
 }
@@ -70,7 +72,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex:1,
-    backgroundColor: '#0984e3',
+    backgroundColor: '#0c2461',
     alignItems: 'center',
     
   },
@@ -94,7 +96,7 @@ const styles = StyleSheet.create({
   fonts: {
     fontSize: 22,
     fontWeight: 'bold',
-    color: '#192a56',
+    color: '#27ae60',
     marginRight: 150
   },
   buttonStyle: {
@@ -112,6 +114,10 @@ const styles = StyleSheet.create({
     color: '#27ae60',
     fontSize: 15,
     paddingLeft: 15,
+  },
+  sView: {
+    flex: 1,
+    justifyContent: 'center',
   }
 
 });
