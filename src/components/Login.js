@@ -11,20 +11,22 @@ export default class Login extends React.Component {
  }
   render() {
     return (
-      <ScrollView contentContainerStyle={styles.sView}>
+      
       <KeyboardAvoidingView behavior='padding' style={styles.container}>
-        <View style={styles.logoContainer}>
-        <Image 
+      <ScrollView 
+      contentContainerStyle={styles.sView}
+      keyboardDismissMode='on-drag'
+      >
+        <View style={styles.innercontainer}>
+        <Image style={{marginBottom: 50}}
         source = {require('../contents/login.png')}
         />
-        </View>
-        <View style={styles.formContainer}>
-        <View style={styles.innercontainer}>
+        
         
         <Text style={styles.fonts}> Login here</Text>
         
         <TextInput
-        placeholder="   User name"
+        placeholder=" User name"
         placeholderTextColor="#27ae60"
         style= {styles.input}
         returnKeyType='next'
@@ -33,7 +35,7 @@ export default class Login extends React.Component {
         
         <TextInput
         style= {styles.input}
-        placeholder='   password'
+        placeholder=' password'
         placeholderTextColor='#27ae60'
         secureTextEntry
         returnKeyType='go'
@@ -57,9 +59,8 @@ export default class Login extends React.Component {
         </View>
 
       </View>
-        </View>
-      </KeyboardAvoidingView>
       </ScrollView>
+      </KeyboardAvoidingView>
     );
   }
 }
@@ -92,6 +93,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#192a56',
     margin: 10,
+    paddingLeft: 10
   },
   fonts: {
     fontSize: 22,

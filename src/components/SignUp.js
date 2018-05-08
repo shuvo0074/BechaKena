@@ -1,6 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput,TouchableOpacity,ScrollView,KeyboardAvoidingView,} from 'react-native';
+import { StyleSheet, Text, View, TextInput,TouchableOpacity,ScrollView,KeyboardAvoidingView,Dimensions} from 'react-native';
 import { Router,Stack,Scene,Actions} from 'react-native-router-flux'
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
+import { CLIENT_RENEG_LIMIT } from 'tls';
 
 export default class SignUp extends React.Component {
   constructor(props) {
@@ -17,24 +19,35 @@ export default class SignUp extends React.Component {
     Actions.accepted()
   }
   render() {
+    let H=Dimensions.get('window').height
+    let w=Dimensions.get('window').width
     return (
-      <KeyboardAvoidingView behavior='padding' style={styles.container} >        
+      <KeyboardAvoidingView behavior='padding' style={styles.container}>
+      <ScrollView
+      horizontal={true}
+      >
+        <View style={{width: w}} >    
         <Text style={styles.fonts}> Give your informations here</Text>
         <TextInput
         style= {styles.input}
-        placeholder='   Full name'
+        placeholder=' Full name'
         placeholderTextColor='#27ae60'
         returnKeyType='next'
         ref= {(input)=> this.fullNameInput=input }
-        onChangeText={(tempFullName) => this.setState({
-              tempFullName
-        })}
+        onChangeText={(text) => this.setState(
+          (previousState) => {
+            return {
+              tempFullName: text
+            }
+          }
+        )}
         value={this.state.fullNameInput}
+        autoFocus={true}
         onSubmitEditing={()=> this.userNameInput.focus()}
         />
 
         <TextInput
-        placeholder="   User name"
+        placeholder=" User name"
         placeholderTextColor="#27ae60"
         style= {styles.input}
         returnKeyType='next'
@@ -51,7 +64,7 @@ export default class SignUp extends React.Component {
         
         <TextInput
         style= {styles.input}
-        placeholder='   password'
+        placeholder=' password'
         placeholderTextColor='#27ae60'
         secureTextEntry
         returnKeyType='next'
@@ -65,10 +78,13 @@ export default class SignUp extends React.Component {
         ref= {(input)=> this.passwordInput=input }
         onSubmitEditing={()=> this.addressInput.focus()}
         />
+        <Text style={styles.fonts}> Scroll right</Text>
+        </View>
 
+        <View style={{width: w, justifyContent: center , }} >
         <TextInput
         style= {styles.input}
-        placeholder='   address'
+        placeholder=' address'
         placeholderTextColor='#27ae60'
         returnKeyType='next'
         ref= {(input)=> this.addressInput=input }
@@ -84,7 +100,7 @@ export default class SignUp extends React.Component {
         
         <TextInput
         style= {styles.input}
-        placeholder='   email'
+        placeholder=' email'
         placeholderTextColor='#27ae60'
         returnKeyType='go'
         ref= {(input)=> this.eMailInput=input }
@@ -100,7 +116,7 @@ export default class SignUp extends React.Component {
 
         <TextInput
         style= {styles.input}
-        placeholder='   Phone'
+        placeholder=' Phone'
         placeholderTextColor='#27ae60'
         returnKeyType='go'
         onChangeText={(text) => this.setState(
@@ -118,7 +134,9 @@ export default class SignUp extends React.Component {
           Register
         </Text>
         </TouchableOpacity>
-      </KeyboardAvoidingView>
+        </View>
+        </ScrollView>
+        </KeyboardAvoidingView>
     );
   }
 }
@@ -128,10 +146,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#0c2461',
     alignItems: 'center',
-    justifyContent: 'center',
   },
   input: {
-      height: 40, 
       width: 250, 
       backgroundColor: '#1e3799', 
       alignItems: 'center', 
@@ -139,19 +155,19 @@ const styles = StyleSheet.create({
       borderWidth: 2,
       borderColor: '#192a56',
       margin: 10,
+      paddingLeft: 10
     },
     fonts: {
-      flex: 1,
       fontSize: 22,
       fontWeight: 'bold',
       color: '#27ae60',
       alignItems: 'center',
       padding: 20,
-      marginTop: 100,
+      marginTop : 20 ,
+      marginBottom : 20 ,
     },
     buttonStyle: {
       margin: 10,
-      height: 30,
       width: 80,
       borderWidth: 3,
       borderColor: '#192a56',
@@ -160,7 +176,6 @@ const styles = StyleSheet.create({
       paddingTop: 2,
       },
     buttonFonts: {
-      flex: 1,
       fontWeight: 'bold',
       color: '#27ae60',
       fontSize: 15,
