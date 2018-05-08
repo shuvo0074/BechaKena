@@ -30,3 +30,39 @@
     arr.push(a)
     this.setState({pass: arr})
     Actions.accepted()
+     
+     8th May,2018
+
+     (inside onPressRegisterButton)
+     var a= this.state.tempFullName
+    var arr = this.state.fullName
+    arr.push(a)
+    this.setState({fullName: arr})
+
+     a=this.state.tempUserName
+     arr = this.state.userName
+    arr.push(a)
+    this.setState({userName: arr})
+    
+     a=this.state.tempPassword
+     arr = this.state.passWord
+    arr.push(a)
+    this.setState({passWord: arr})
+    
+     a=this.state.tempAddress
+     arr = this.state.address
+    arr.push(a)
+    this.setState({address: arr})
+    
+     a=this.state.tempEmail
+     arr = this.state.eMail
+    arr.push(a)
+    this.setState({eMail: arr})
+    
+     a=this.state.tempPhone
+     arr = this.state.phone
+    arr.push(a)
+    this.setState({phone: arr})
+    
+    (inside keyboardavoidingview)
+    <Text style={styles.fonts}> *{this.state.tempFullName}*{this.state.tempUserName}*{this.state.tempPassword}*{this.state.tempAddress}*{this.state.tempEmail}*{this.state.tempPhone}* </Text>

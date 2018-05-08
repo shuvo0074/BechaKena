@@ -5,8 +5,14 @@ import { Router,Stack,Scene,Actions} from 'react-native-router-flux'
 export default class SignUp extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {fullName: [],tempFullName: '',passWord: [],tempPassWord: '',};
-  }
+    this.state = {
+    fullName: [],tempFullName: " " ,
+    userName: [],tempUserName: " " ,
+    passWord: [],tempPassword: " " ,
+    address: [],tempAddress: " " ,
+    eMail: [],tempEmail: " " ,
+    phone: [],tempPhone: " " ,
+  }}
   onPressRegisterButton(){
     Actions.accepted()
   }
@@ -18,10 +24,12 @@ export default class SignUp extends React.Component {
         style= {styles.input}
         placeholder='   Full name'
         placeholderTextColor='#27ae60'
-        secureTextEntry
-        ref = "fName"
         returnKeyType='next'
         ref= {(input)=> this.fullNameInput=input }
+        onChangeText={(tempFullName) => this.setState({
+              tempFullName
+        })}
+        value={this.state.fullNameInput}
         onSubmitEditing={()=> this.userNameInput.focus()}
         />
 
@@ -30,11 +38,10 @@ export default class SignUp extends React.Component {
         placeholderTextColor="#27ae60"
         style= {styles.input}
         returnKeyType='next'
-        ref = "uName"
         onChangeText={(text) => this.setState(
           (previousState) => {
             return {
-
+              tempUserName: text
             }
           }
         )}
@@ -47,8 +54,14 @@ export default class SignUp extends React.Component {
         placeholder='   password'
         placeholderTextColor='#27ae60'
         secureTextEntry
-        ref = "pas"
         returnKeyType='next'
+        onChangeText={(text) => this.setState(
+          (previousState) => {
+            return {
+              tempPassword: text
+            }
+          }
+        )}
         ref= {(input)=> this.passwordInput=input }
         onSubmitEditing={()=> this.addressInput.focus()}
         />
@@ -57,10 +70,15 @@ export default class SignUp extends React.Component {
         style= {styles.input}
         placeholder='   address'
         placeholderTextColor='#27ae60'
-        secureTextEntry
-        ref = "addr"
         returnKeyType='next'
         ref= {(input)=> this.addressInput=input }
+        onChangeText={(text) => this.setState(
+          (previousState) => {
+            return {
+              tempAddress: text
+            }
+          }
+        )}
         onSubmitEditing={()=> this.eMailInput.focus()}
         />
         
@@ -68,10 +86,15 @@ export default class SignUp extends React.Component {
         style= {styles.input}
         placeholder='   email'
         placeholderTextColor='#27ae60'
-        secureTextEntry
-        ref = "email"
         returnKeyType='go'
         ref= {(input)=> this.eMailInput=input }
+        onChangeText={(text) => this.setState(
+          (previousState) => {
+            return {
+              tempEmail: text
+            }
+          }
+        )}
         onSubmitEditing={()=> this.phoneInput.focus()}
         />
 
@@ -79,15 +102,18 @@ export default class SignUp extends React.Component {
         style= {styles.input}
         placeholder='   Phone'
         placeholderTextColor='#27ae60'
-        secureTextEntry
-        ref = "phone"
         returnKeyType='go'
+        onChangeText={(text) => this.setState(
+          (previousState) => {
+            return {
+              tempPhone: text
+            }
+          }
+        )}
         ref= {(input)=> this.phoneInput=input }
         />
 
-        <TouchableOpacity style={styles.buttonStyle} onPress={this.onPressRegisterButton} 
-        ref= {(input)=> this.submitButton=input }
-        >
+        <TouchableOpacity style={styles.buttonStyle} onPress={this.onPressRegisterButton}>
         <Text style={styles.buttonFonts}>
           Register
         </Text>
