@@ -1,18 +1,18 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput,TouchableOpacity,ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TextInput,TouchableOpacity,ScrollView,KeyboardAvoidingView,} from 'react-native';
 import { Router,Stack,Scene,Actions} from 'react-native-router-flux'
 
 export default class SignUp extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {txt: [],pass: []};
+    this.state = {fullName: [],tempFullName: '',passWord: [],tempPassWord: '',};
   }
   onPressRegisterButton(){
     Actions.accepted()
   }
   render() {
     return (
-      <ScrollView contentContainerStyle={styles.container} >        
+      <KeyboardAvoidingView behavior='padding' style={styles.container} >        
         <Text style={styles.fonts}> Give your informations here</Text>
         <TextInput
         style= {styles.input}
@@ -20,8 +20,9 @@ export default class SignUp extends React.Component {
         placeholderTextColor='#27ae60'
         secureTextEntry
         ref = "fName"
-        returnKeyType='go'
-        ref= {(input)=> this.passwordInput=input }
+        returnKeyType='next'
+        ref= {(input)=> this.fullNameInput=input }
+        onSubmitEditing={()=> this.userNameInput.focus()}
         />
 
         <TextInput
@@ -30,7 +31,14 @@ export default class SignUp extends React.Component {
         style= {styles.input}
         returnKeyType='next'
         ref = "uName"
-        onChangeText={(text) => this.setState({text})}
+        onChangeText={(text) => this.setState(
+          (previousState) => {
+            return {
+
+            }
+          }
+        )}
+        ref= {(input)=> this.userNameInput=input }
         onSubmitEditing={()=> this.passwordInput.focus()}
         />
         
@@ -40,8 +48,9 @@ export default class SignUp extends React.Component {
         placeholderTextColor='#27ae60'
         secureTextEntry
         ref = "pas"
-        returnKeyType='go'
+        returnKeyType='next'
         ref= {(input)=> this.passwordInput=input }
+        onSubmitEditing={()=> this.addressInput.focus()}
         />
 
         <TextInput
@@ -50,8 +59,9 @@ export default class SignUp extends React.Component {
         placeholderTextColor='#27ae60'
         secureTextEntry
         ref = "addr"
-        returnKeyType='go'
-        ref= {(input)=> this.passwordInput=input }
+        returnKeyType='next'
+        ref= {(input)=> this.addressInput=input }
+        onSubmitEditing={()=> this.eMailInput.focus()}
         />
         
         <TextInput
@@ -61,7 +71,8 @@ export default class SignUp extends React.Component {
         secureTextEntry
         ref = "email"
         returnKeyType='go'
-        ref= {(input)=> this.passwordInput=input }
+        ref= {(input)=> this.eMailInput=input }
+        onSubmitEditing={()=> this.phoneInput.focus()}
         />
 
         <TextInput
@@ -71,15 +82,17 @@ export default class SignUp extends React.Component {
         secureTextEntry
         ref = "phone"
         returnKeyType='go'
-        ref= {(input)=> this.passwordInput=input }
+        ref= {(input)=> this.phoneInput=input }
         />
 
-        <TouchableOpacity style={styles.buttonStyle} onPress={this.onPressRegisterButton} >
+        <TouchableOpacity style={styles.buttonStyle} onPress={this.onPressRegisterButton} 
+        ref= {(input)=> this.submitButton=input }
+        >
         <Text style={styles.buttonFonts}>
           Register
         </Text>
         </TouchableOpacity>
-      </ScrollView>
+      </KeyboardAvoidingView>
     );
   }
 }
