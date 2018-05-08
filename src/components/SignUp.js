@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput,TouchableOpacity,ScrollView,KeyboardAvoidingView,Dimensions} from 'react-native';
 import { Router,Stack,Scene,Actions} from 'react-native-router-flux'
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
-import { CLIENT_RENEG_LIMIT } from 'tls';
 
 export default class SignUp extends React.Component {
   constructor(props) {
@@ -25,6 +24,7 @@ export default class SignUp extends React.Component {
       <KeyboardAvoidingView behavior='padding' style={styles.container}>
       <ScrollView
       horizontal={true}
+      pagingEnabled={true}
       >
         <View style={{width: w}} >    
         <Text style={styles.fonts}> Give your informations here</Text>
@@ -76,12 +76,14 @@ export default class SignUp extends React.Component {
           }
         )}
         ref= {(input)=> this.passwordInput=input }
-        onSubmitEditing={()=> this.addressInput.focus()}
         />
-        <Text style={styles.fonts}> Scroll right</Text>
+        <Text style={styles.fonts2}> Scroll right >>> </Text>
+        
         </View>
 
-        <View style={{width: w, justifyContent: center , }} >
+
+
+        <View style={{width: w, justifyContent: 'center' , }} >
         <TextInput
         style= {styles.input}
         placeholder=' address'
@@ -159,6 +161,15 @@ const styles = StyleSheet.create({
     },
     fonts: {
       fontSize: 22,
+      fontWeight: 'bold',
+      color: '#27ae60',
+      alignItems: 'center',
+      padding: 20,
+      marginTop : 20 ,
+      marginBottom : 20 ,
+    },
+    fonts2: {
+      fontSize: 16,
       fontWeight: 'bold',
       color: '#27ae60',
       alignItems: 'center',
