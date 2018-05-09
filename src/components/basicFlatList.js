@@ -1,16 +1,21 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity,FlatList,Dimensions } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity,FlatList,Dimensions,Image } from 'react-native';
 import { Actions} from 'react-native-router-flux'
 import flatListData from '../contents/fListData'
 
 class FlatListItems extends React.Component {
     
     render() {
+      
       return (
         <View style={{
           padding: 10,
           backgroundColor : this.props.index %2 == 0 ? '#55E6C1' : '#58B19F',
         }}>
+        <Image 
+        source={this.props.item.imageS} 
+        style= {{height: 100, width: 100, margin: 10, padding: 5}}
+        />
         <Text style={styles.listItemFonts}>{this.props.item.name}</Text>
         <Text>{this.props.item.desc}</Text>
         </View>

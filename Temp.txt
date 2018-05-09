@@ -66,3 +66,15 @@
     
     (inside keyboardavoidingview)
     <Text style={styles.fonts}> *{this.state.tempFullName}*{this.state.tempUserName}*{this.state.tempPassword}*{this.state.tempAddress}*{this.state.tempEmail}*{this.state.tempPhone}* </Text>
+
+9-5-2018
+var imSourcea1= require('../contents/list item images/a1')
+var imSourcea1= require('../contents/list item images/a2')
+var imSourcea1= require('../contents/list item images/a3')
+var imSourcea1= require('../contents/list item images/a4')
+var imSourcea1= require('../contents/list item images/a5')
+var imSourcea1= require('../contents/list item images/a6')
+var imSourcea1= require('../contents/list item images/a7')
+var imSourcea1= require('../contents/list item images/a8')
+var imSourcea1= require('../contents/list item images/a9')
+var imSourcea1= require('../contents/list item images/b1')
