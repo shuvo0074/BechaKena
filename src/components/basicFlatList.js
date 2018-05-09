@@ -4,6 +4,7 @@ import { Actions} from 'react-native-router-flux'
 import Swipeout from 'react-native-swipeout'
 import fListData from '../contents/fListData'
 import AddModal from '../contents/addModal'
+import EditModal from '../contents/editModal'
 
 class FlatListItems extends React.Component {
   constructor (props){
@@ -25,6 +26,13 @@ class FlatListItems extends React.Component {
           this.setState ({activeRowKey: this.props.item.key})
         },
         right: [
+          
+          {
+            onPress: ()=> {              
+            },
+            text: 'Edit', type: 'primary'
+          },
+          
           {
             onPress: ()=> {
               const deletingRow = this.state.activeRowKey
@@ -82,6 +90,7 @@ export default class basicFlatList extends React.Component {
         deletedRowKey: deletedKey
       }
     })
+    this.refs.flist.scrollToEnd()
   }
 
   onPressLogOutButton(){
@@ -104,6 +113,7 @@ export default class basicFlatList extends React.Component {
         </TouchableHighlight>
         <FlatList style={styles.list}
         data={fListData}
+        ref={'flist'}
         renderItem={({item,index})=>
         {
             return (

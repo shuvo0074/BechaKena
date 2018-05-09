@@ -7,15 +7,15 @@ import Modal from 'react-native-modalbox'
 import Button from 'react-native-button'
 
 
-export default class addModal extends React.Component {
+export default class editModal extends React.Component {
   constructor (props){
     super(props)
     this.state = {
-      newItemName:'',
-      newItemDescription: '',      
+      ItemName:'',
+      ItemDescription: '',      
     }
   }
-  showAddModal = ()=> {
+  showEditModal = ()=> {
     this.refs.myModal.open()
   }
   
@@ -27,7 +27,7 @@ export default class addModal extends React.Component {
       position = 'center'
       backdrop= {true}
       onClosed= { ()=>{
-        alert ("Item added to the bottom")
+        alert ("Item Edited to the bottom")
       }}
       >
       <Text style={styles.modalText} >New item information</Text>
@@ -36,33 +36,26 @@ export default class addModal extends React.Component {
       placeholder=' Item name'
       onChangeText= {(text) => {
         this.setState({
-          newItemName: text
+          ItemName: text
         })}}
-      value={this.state.newItemName}
+      value={this.state.ItemName}
       />
       <TextInput
       style= {styles.input}
       placeholder=' Description'
-      value={this.state.newItemDescription}
+      value={this.state.ItemDescription}
       onChangeText= {(text) => {
         this.setState({
-          newItemDescription: text
+          ItemDescription: text
         })}}
       />
       <Button
       style={styles.buttonStyle}
-      onPress={ ()=>{ if (this.state.newItemName.length == 0 || this.state.newItemDescription.length ==0){
+      onPress={ ()=>{ if (this.state.ItemName.length == 0 || this.state.ItemDescription.length ==0){
         alert("Enter Item name and description")
         return
       }
-      const newItem = {
-        key: this.state.newItemName+this.state.newItemDescription.length ,
-        name: this.state.newItemName,
-        imageS: require('../contents/new.png'),
-        desc: this.state.newItemDescription,
-
-      }
-      flatListData.push(newItem)
+      
       this.refs.myModal.close()
       }}>
         Save
