@@ -20,7 +20,7 @@ var fListData = [
         "key":"a2",
         "name":"Chair",
         "imageS": imSourcea2 ,
-        "desc":"Leather cushion and wooden. Single.  "
+        "desc":"Leather cushion and wooden. \n Single."
     },
     {
         "key":"a3",

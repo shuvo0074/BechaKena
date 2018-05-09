@@ -1,24 +1,68 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity,FlatList,Dimensions,Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity,FlatList,Dimensions,Image,Alert } from 'react-native';
 import { Actions} from 'react-native-router-flux'
+import Swipeout from 'react-native-swipeout'
 import flatListData from '../contents/fListData'
+import fListData from '../contents/fListData';
 
 class FlatListItems extends React.Component {
-    
+  constructor (props){
+    super(props)
+    this.state = {
+      activeRowKey: null,
+    }
+  }
     render() {
+
+      const swipeSettings= {
+        autoClose : true,
+        onClose: (secID, rowId, direction) => {
+          if (this.state.activeRowKey != null){
+            this.setState ({activeRowKey: null})
+          }
+        },
+        onOpen: (secID, rowId, direction) => {
+          this.setState ({activeRowKey: this.props.item.key})
+        },
+        right: [
+          {
+            onPress: ()=> {
+              const deletingRow = this.state.activeRowKey
+              Alert.alert(
+                '',
+                'Are you sure to delete this item?',[
+                  {text: 'No' , onPress: ()=> console.log("cancelled"),style: 'cancel'},
+                  {text: 'Yes', onPress: ()=> {
+                    fListData.splice(this.props.index,1)
+                    this.props.parentFlatList.refreshFlatList()                  
+                  }}
+                ],
+                {cancelable: true}
+              )
+            },
+            text: 'delete', type: 'delete'
+          }
+        ],
+        rowId: this.props.index,
+        sectionId: 1 
+      }
       
       return (
-        <View style={{
-          padding: 10,
+        <Swipeout {...swipeSettings} >
+          <View style={{
           backgroundColor : this.props.index %2 == 0 ? '#55E6C1' : '#58B19F',
+          flexDirection: 'row',width: Dimensions.get('window').width,
         }}>
         <Image 
         source={this.props.item.imageS} 
-        style= {{height: 100, width: 100, margin: 10, padding: 5}}
+        style= {{height: 70, width: 70, margin: 10, padding: 5,}}
         />
+        <View >
         <Text style={styles.listItemFonts}>{this.props.item.name}</Text>
         <Text>{this.props.item.desc}</Text>
         </View>
+        </View>
+        </Swipeout>
       );
     }
   }
@@ -27,7 +71,16 @@ export default class basicFlatList extends React.Component {
   constructor (props){
     super(props)
     this.state = {
+      deletedRowKey: null,
     }
+  }
+
+  refreshFlatList = (deletedKey) => {
+    this.setState ((prevState) => {
+      return{
+        deletedRowKey: deletedKey
+      }
+    })
   }
 
   onPressLogOutButton(){
@@ -47,7 +100,7 @@ export default class basicFlatList extends React.Component {
         renderItem={({item,index})=>
         {
             return (
-                <FlatListItems item={item} index={index} ></FlatListItems>
+                <FlatListItems item={item} index={index} parentFlatList = {this} ></FlatListItems>
             )
         }}
         >
@@ -73,8 +126,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   list: {
-    marginHorizontal : 25,
-
+    width: W
   },
   listItemFonts: {
     fontSize: 12,
