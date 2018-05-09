@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity,FlatList,Dimensions,Image,Alert } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity,FlatList,Dimensions,Image,Alert,TouchableHighlight } from 'react-native';
 import { Actions} from 'react-native-router-flux'
 import Swipeout from 'react-native-swipeout'
-import flatListData from '../contents/fListData'
-import fListData from '../contents/fListData';
+import fListData from '../contents/fListData'
+import AddModal from '../contents/addModal'
 
 class FlatListItems extends React.Component {
   constructor (props){
@@ -70,9 +70,10 @@ class FlatListItems extends React.Component {
 export default class basicFlatList extends React.Component {
   constructor (props){
     super(props)
-    this.state = {
+    this.state = ({
       deletedRowKey: null,
-    }
+    })
+    this._onPressAdd = this._onPressAdd.bind (this)
   }
 
   refreshFlatList = (deletedKey) => {
@@ -86,17 +87,23 @@ export default class basicFlatList extends React.Component {
   onPressLogOutButton(){
     Actions.login()
   }
-  
+  _onPressAdd() {
+    //alert ("You added an item. ")
+    this.refs.addModal.showAddModal()
+  }
   render() {
     return (
 
       <View style={styles.container}>
         
-        <View style={{padding: 5, margin : 30, backgroundColor: '#58B19F'}}>
-          <Text style= {styles.listItemFonts}>Items list</Text>
-        </View>
+        <TouchableHighlight style={{ margin : 30,alignItems: 'flex-end', height: 60,borderRadius: 15, width: Dimensions.get('window').width - 60 , backgroundColor: '#0984e3'}}
+        onPress={this._onPressAdd}
+        >
+          <Image source={require('../contents/add_item.png')}
+          style={{height: 50,width: 50,marginRight: 20,padding:10}} />
+        </TouchableHighlight>
         <FlatList style={styles.list}
-        data={flatListData}
+        data={fListData}
         renderItem={({item,index})=>
         {
             return (
@@ -105,7 +112,11 @@ export default class basicFlatList extends React.Component {
         }}
         >
         </FlatList>
-
+        <AddModal
+        ref={'addModal'} 
+        parentFlatList={this}
+        >
+        </AddModal>
         <TouchableOpacity style={styles.buttonStyle} onPress={this.onPressLogOutButton} >
         <Text style={styles.buttonFonts}>
           Log out
