@@ -24,6 +24,9 @@ export default class Accepted extends React.Component {
   onPressLogOutButton(){
     Actions.login()
   }
+  onPressItemButton(){
+    Actions.BasicFlatList()
+  }
   render() {
 
     let textToDisplay = this.state.showText? " Successful !": ''
@@ -36,6 +39,12 @@ export default class Accepted extends React.Component {
         <TouchableOpacity style={styles.buttonStyle} onPress={this.onPressLogOutButton} >
         <Text style={styles.buttonFonts}>
           Log out
+        </Text>
+        </TouchableOpacity>
+        
+        <TouchableOpacity style={styles.buttonStyle} onPress={this.onPressItemButton} >
+        <Text style={styles.buttonFonts}>
+          Item list
         </Text>
         </TouchableOpacity>
 

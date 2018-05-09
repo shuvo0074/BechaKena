@@ -5,6 +5,7 @@ import Login from './src/components/Login'
 import SignUp from './src/components/SignUp'
 import Accepted from './src/components/Accepted'
 import Failed from './src/components/Failed'
+import basicFlatList from './src/components/basicFlatList'
 
 export default class App extends React.Component {
   render() {
@@ -16,7 +17,7 @@ export default class App extends React.Component {
       key="login"
       component={Login}
       title="logiN"
-      initial
+      
       />
       
       <Scene
@@ -37,6 +38,13 @@ export default class App extends React.Component {
       title="faileD"
       />
       
+      <Scene
+      key="BasicFlatList"
+      component={basicFlatList}
+      title="flatlist"
+      initial
+      />
+
       </Scene>
       </Router>
     );
